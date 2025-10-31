@@ -4,7 +4,7 @@ image: image.c image.h
 	gcc image.c -o image -lm
 
 image_pthreads: image_pthreads.c image.h
-	gcc image_pthreads.c -o image_pthreads -lm -lthread
+	gcc image_pthreads.c -o image_pthreads -lm -lpthread
 
 image_openmp: image_openmp.c image.h
 	gcc image_openmp.c -o image_openmp -lm -fopenmp
