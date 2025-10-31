@@ -89,7 +89,8 @@ void convolute(Image* srcImage,Image* destImage,Matrix algorithm){
     int base=rows/threads;
     int rem=rows%threads;
     int start=0;
-    for (int t=0;t<threads;t++){
+    int t;
+    for (t=0;t<threads;t++){
         int take=base+(t<rem?1:0);
         args[t].src=srcImage;
         args[t].dest=destImage;
@@ -99,7 +100,7 @@ void convolute(Image* srcImage,Image* destImage,Matrix algorithm){
         start+=take;
         pthread_create(&ts[t],NULL,worker,&args[t]);
     }
-    for (int t=0;t<threads;t++) pthread_join(ts[t],NULL);
+    for (t=0;t<threads;t++) pthread_join(ts[t],NULL);
     free(ts);
     free(args);
 }
